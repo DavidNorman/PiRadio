@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+
+    <meta name="description" content="PiRadio main page">
+    <meta name="author" content="David Norman">
     <link rel="icon" href="img/favicon.ico">
 
     <title>PiRadio</title>
 
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" type="text.css" href="css/piradio.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="css/piradio.css" />
 
     <script type="text/javascript" src="js/angular.min.js"></script>
     <script type="text/javascript" src="js/angular-route.min.js"></script>
@@ -30,29 +30,14 @@
 
   <body role="document">
 
-    <nav class="navbar navbar-static-top navbar-inverse">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">PiRadio</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="#/search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a></li>
-            <li><a href="#/playlist"><span class="glyphicon glyphicon-list" aria-hidden="true"></span></a></li>
-            <li><a href="#/"><span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span></a></li>
-            <li><a href="#/"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></li>
-            <li><a href="#/"><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></a></li>
-            <li><a href="#/"><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span></a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <div>
+      <a href="#/search"><span class="glyphicon glyphicon-search"></span></a>
+      <a href="#/playlist"><span class="glyphicon glyphicon-list"></span></a>
+      <a href="#/"><span class="glyphicon glyphicon-fast-backward"></span></a>
+      <a href="#/"><span class="glyphicon glyphicon-play"></span></a>
+      <a href="#/"><span class="glyphicon glyphicon-pause"></span></a>
+      <a href="#/"><span class="glyphicon glyphicon-fast-forward"></span></a>
+    </div>
 
     <div class="container main-body" role="main">
       <div ng-view></div>
