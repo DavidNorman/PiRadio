@@ -1,0 +1,66 @@
+#!/usr/bin/python
+
+import requests
+import cherrypy
+import cherrypy_cors
+import json
+import socket
+import sys
+
+cherrypy_cors.install()
+
+squeeze_player = ""
+
+def get_ip_address():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(('192.168.0.101', 0))  # connecting to a UDP address doesn't send packets
+    return s.getsockname()[0]
+
+def squeeze_request(params):
+    js = {"id":1,"method":"slim.request","params":[squeeze_player,params]}
+    return requests.post('http://192.168.0.101:9001/jsonrpc.js', data=json.dumps(js)).json()
+
+class SqueezeServerService(object):
+    exposed = True
+
+    @cherrypy.tools.json_out()
+    @cherrypy.tools.json_in()
+    def POST(self):
+        return squeeze_request(cherrypy.request.json)
+
+    @cherrypy_cors.tools.preflight(allowed_methods=["POST"])
+    def OPTIONS(self):
+        pass
+
+if __name__ == '__main__':
+    conf = {
+        '/': {
+            'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
+            'tools.response_headers.on': True,
+            'tools.response_headers.headers': [('Content-Type', 'application/json')],
+            'cors.expose.on': True,
+        }
+    }
+
+    # Get our IP address as seen by the squeeze server
+    ip = get_ip_address()
+
+    # Establish our player id
+    r = squeeze_request(["players"])
+    player_count = r["result"]["count"]
+    if player_count == 0:
+        sys.exit(0)
+
+    r = squeeze_request(["players",0,player_count])
+    for p in r["result"]["players_loop"]:
+        if p["ip"].startswith(ip):
+          squeeze_player = p["playerid"]
+    
+    if squeeze_player == "":
+        sys.exit(0)
+
+    cherrypy.server.socket_host = "0.0.0.0"
+    cherrypy.server.socket_port = 3000
+
+    cherrypy.quickstart(SqueezeServerService(), '/', conf)
+
