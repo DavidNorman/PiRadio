@@ -18,8 +18,18 @@ function SlimClient($http, $location, serverStatus) {
 
     this.search = function(text) {
       data = [ "search", 0, 100, "term:" + text ];
-
       return slimRequest(data);
     };
+
+    this.tracks_for_album = function(album) {
+      data = [ "titles", 0, 100, "album_id:" + album, "sort:tracknum" ];
+      return slimRequest(data);
+    };
+
+    this.albums_for_artist = function(artist) {
+      data = [ "albums", 0, 100, "artist_id:" + artist ];
+      return slimRequest(data);
+    };
+
 };
 
