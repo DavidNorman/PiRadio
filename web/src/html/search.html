@@ -1,39 +1,56 @@
+<div ng-init="init()" />
+
 <div>
   <form novalidate class="simple-form" ng-submit="submitSearch()">
     <input type="text" ng-model="searchText" placeholder="Search" />
   </form>
 </div>
 
-<table class="table table-striped" ng-init="init()">
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Track</th>
+      <th class="col-xs-1"></th>
+      <th class="col-xs-5">Track</th>
+      <th class="col-xs-3">Album</th>
+      <th class="col-xs-3">Artist</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="r in tracks">
-      <td>{{r}}</td>
+      <th><span class="glyphicon glyphicon-plus-sign" /></th>
+      <td>{{r.track}}</td>
+      <td>{{r.album}}</td>
+      <td>{{r.artist}}</td>
     </tr>
   </tbody>
+</table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Album</th>
+      <th class="col-xs-1"></th>
+      <th class="col-xs-5">Album</th>
+      <th class="col-xs-6">Artist</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="r in albums">
-      <td>{{r}}</td>
+      <th><span class="glyphicon glyphicon-plus-sign" /></th>
+      <td>{{r.album}}</td>
+      <td>{{r.artist}}</td>
     </tr>
   </tbody>
+</table>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Artist</th>
+      <th class="col-xs-1"></th>
+      <th class="col-xs-11">Artist</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="r in artists">
-      <td>{{r}}</td>
+      <th><span class="glyphicon glyphicon-plus-sign" /></th>
+      <td>{{r.contributor}}</td>
     </tr>
   </tbody>
-
 </table>
