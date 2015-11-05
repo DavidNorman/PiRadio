@@ -1,20 +1,17 @@
 function ArtistController($scope, $routeParams, slimClient) {
 
   $scope.client = slimClient;
-  $scope.tracks = [];
 
   $scope.init = function() {
     var artist = $routeParams.artist;
     if (artist != "") {
-      slimClient.albums_for_artist(artist).
+      slimClient.albums("artist_id:" + artist).
         success(function(result) {
-
-          res = result['result'];
-
-          $scope.albums = res['albums_loop'];
-        }).
-        error(function(result) {
-          alert("Failed: " + result);
+          $scope.albums = result['albums_loop'];
+        });
+      slimClient.artists("artist_id:" + artist).
+        success(function(result) {
+          $scope.artist_info = result['artists_loop'][0];
         });
     }
   };

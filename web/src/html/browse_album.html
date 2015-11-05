@@ -1,25 +1,23 @@
 <div ng-init="init()" />
 
-<div>
-  <form novalidate class="simple-form" ng-submit="submitSearch()">
-    <input type="text" ng-model="searchText" placeholder="Search" />
-  </form>
-</div>
-
-<p>Album: {{album_title}}</p>
-<p>Artist: {{album_artist}}</p>
+<p>Album: {{album_info.album}}</p>
+<p>Artist: <a href="#/local/artist/{{album_info.artist_id}}">{{album_info.artist}}</a></p>
 
 <table class="table table-striped">
   <thead>
     <tr>
       <th class="col-xs-1"></th>
+      <th class="col-xs-1">Number</th>
       <th class="col-xs-5">Track</th>
+      <th class="col-xs-5">Artist</th>
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="r in tracks">
+    <tr ng-repeat="t in tracks">
       <th><span class="glyphicon glyphicon-plus-sign" /></th>
-      <td>{{r.title}}</td>
+      <td>{{t.tracknum}}</td>
+      <td><a href="#/local/track/{{t.id}}">{{t.title}}</a></td>
+      <td><a href="#/local/artist/{{t.artist_id}}">{{t.artist}}</a></td>
     </tr>
   </tbody>
 </table>

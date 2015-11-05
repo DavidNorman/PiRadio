@@ -16,18 +16,23 @@ function SlimClient($http, $location, serverStatus) {
             });
     };
 
-    this.search = function(text) {
-      data = [ "search", 0, 100, "term:" + text ];
+    this.songinfo = function(search) {
+      data = [ "songinfo", 0, 100, search, "tags:adelsty" ];
       return slimRequest(data);
     };
 
-    this.tracks_for_album = function(album) {
-      data = [ "titles", 0, 100, "album_id:" + album, "sort:tracknum" ];
+    this.tracks = function(search) {
+      data = [ "titles", 0, 100, search, "sort:albumtrack", "tags:aels" ];
       return slimRequest(data);
     };
 
-    this.albums_for_artist = function(artist) {
-      data = [ "albums", 0, 100, "artist_id:" + artist ];
+    this.albums = function(search) {
+      data = [ "albums", 0, 100, search, "tags:alS" ];
+      return slimRequest(data);
+    };
+
+    this.artists = function(search) {
+      data = [ "artists", 0, 100, search ];
       return slimRequest(data);
     };
 

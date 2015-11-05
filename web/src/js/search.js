@@ -1,4 +1,4 @@
-function SearchController($scope, slimClient) {
+function SearchController($scope, $location, slimClient) {
 
   $scope.client = slimClient;
   $scope.searchText = "";
@@ -8,22 +8,36 @@ function SearchController($scope, slimClient) {
 
   $scope.submitSearch = function() {
     if ($scope.searchText != "") {
-      slimClient.search( $scope.searchText ).
+      slimClient.tracks( "search:" + $scope.searchText ).
         success(function(result) {
-
-          res = result['result'];
-
-          $scope.albums = res['albums_loop'];
-          $scope.tracks = res['tracks_loop'];
-          $scope.artists = res['contributors_loop'];
-        }).
-        error(function(result) {
-          alert("Failed: " + result);
+          $scope.tracks = result['titles_loop'];
+        });
+      slimClient.albums( "search:" + $scope.searchText ).
+        success(function(result) {
+          $scope.albums = result['albums_loop'];
+        });
+      slimClient.artists( "search:" + $scope.searchText ).
+        success(function(result) {
+          $scope.artists = result['artists_loop'];
         });
     }
   };
 
+  $scope.$watch("searchText", function(val) {
+    if (!val || val.length == 0) {
+      $location.search('search', null);
+    } else {
+      $location.search('search', val);
+    }
+  });
+
   $scope.init = function() {
+    if ($location.search().search) {
+        $scope.searchText = $location.search().search;
+        $scope.submitSearch();
+    } else {
+        $scope.searchText = "";
+    }
   };
 
 }

@@ -1,9 +1,11 @@
+#!/bin/bash
+
 # Web site
-pushd web
+pushd web >/dev/null
 source ./deploy.sh
-popd
+popd >/dev/null
 
 # Controller
-pushd ./controller
+pushd ./controller >/dev/null
 source ./deploy.sh
-popd
+popd >/dev/null

@@ -10,17 +10,19 @@
   <thead>
     <tr>
       <th class="col-xs-1"></th>
+      <th class="col-xs-1">Number</th>
       <th class="col-xs-5">Track</th>
       <th class="col-xs-3">Album</th>
-      <th class="col-xs-3">Artist</th>
+      <th class="col-xs-2">Artist</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="r in tracks">
       <th><span class="glyphicon glyphicon-plus-sign" /></th>
-      <td>{{r.track}}</td>
-      <td>{{r.album}}</td>
-      <td>{{r.artist}}</td>
+      <td>{{r.tracknum}}</td>
+      <td><a href="#/local/track/{{r.id}}">{{r.title}}</a></td>
+      <td><a href="#/local/album/{{r.album_id}}">{{r.album}}</a></td>
+      <td><a href="#/local/artist/{{r.artist_id}}">{{r.artist}}</a></td>
     </tr>
   </tbody>
 </table>
@@ -28,15 +30,15 @@
   <thead>
     <tr>
       <th class="col-xs-1"></th>
-      <th class="col-xs-5">Album</th>
-      <th class="col-xs-6">Artist</th>
+      <th class="col-xs-6">Album</th>
+      <th class="col-xs-5">Artist</th>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="r in albums">
       <th><span class="glyphicon glyphicon-plus-sign" /></th>
-      <td><a href="#/local/album/{{r.album_id}}">{{r.album}}</a></td>
-      <td>{{r.artist}}</td>
+      <td><a href="#/local/album/{{r.id}}">{{r.album}}</a></td>
+      <td><a href="#/local/artist/{{r.artist_id}}">{{r.artist}}</a></td>
     </tr>
   </tbody>
 </table>
@@ -50,7 +52,7 @@
   <tbody>
     <tr ng-repeat="r in artists">
       <th><span class="glyphicon glyphicon-plus-sign" /></th>
-      <td><a href="#/local/artist/{{r.contributor_id}}">{{r.contributor}}</a></td>
+      <td><a href="#/local/artist/{{r.id}}">{{r.artist}}</a></td>
     </tr>
   </tbody>
 </table>

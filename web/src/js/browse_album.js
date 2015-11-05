@@ -1,21 +1,21 @@
 function AlbumController($scope, $routeParams, slimClient) {
 
   $scope.client = slimClient;
-  $scope.tracks = [];
 
   $scope.init = function() {
     var album = $routeParams.album;
     if (album != "") {
-      slimClient.tracks_for_album(album).
+
+      slimClient.albums("album_id:" + album).
         success(function(result) {
-
-          res = result['result'];
-
-          $scope.tracks = res['titles_loop'];
-        }).
-        error(function(result) {
-          alert("Failed: " + result);
+          $scope.album_info = result['albums_loop'][0];
         });
+
+      slimClient.tracks("album_id:" + album).
+        success(function(result) {
+          $scope.tracks = result['titles_loop'];
+        });
+
     }
   };
 
