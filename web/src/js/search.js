@@ -6,6 +6,10 @@ function SearchController($scope, $location, slimClient) {
   $scope.artists = [];
   $scope.tracks = [];
 
+  $scope.add_track = slimClient.add_track;
+  $scope.add_album = slimClient.add_album;
+  $scope.add_artist = slimClient.add_artist;
+
   $scope.submitSearch = function() {
     if ($scope.searchText != "") {
       slimClient.tracks( "search:" + $scope.searchText ).

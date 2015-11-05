@@ -18,7 +18,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="r in tracks">
-      <th><span class="glyphicon glyphicon-plus-sign" /></th>
+      <td><a href="javascript:;" ng-click="add_track(r.id)"><span class="glyphicon glyphicon-plus-sign" /></a></td>
       <td>{{r.tracknum}}</td>
       <td><a href="#/local/track/{{r.id}}">{{r.title}}</a></td>
       <td><a href="#/local/album/{{r.album_id}}">{{r.album}}</a></td>
@@ -36,7 +36,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="r in albums">
-      <th><span class="glyphicon glyphicon-plus-sign" /></th>
+      <td><a href="javascript:;" ng-click="add_album(r.id)"><span class="glyphicon glyphicon-plus-sign" /></a></td>
       <td><a href="#/local/album/{{r.id}}">{{r.album}}</a></td>
       <td><a href="#/local/artist/{{r.artist_id}}">{{r.artist}}</a></td>
     </tr>
@@ -51,7 +51,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="r in artists">
-      <th><span class="glyphicon glyphicon-plus-sign" /></th>
+      <td><a href="javascript:;" ng-click="add_artist(r.id)"><span class="glyphicon glyphicon-plus-sign" /></a></td>
       <td><a href="#/local/artist/{{r.id}}">{{r.artist}}</a></td>
     </tr>
   </tbody>

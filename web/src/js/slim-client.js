@@ -36,5 +36,37 @@ function SlimClient($http, $location, serverStatus) {
       return slimRequest(data);
     };
 
+    this.add_track = function(id) {
+      data = ["playlistcontrol", "cmd:add", "track_id:"+id];
+      return slimRequest(data);
+    };
+
+    this.add_album = function(id) {
+      data = ["playlistcontrol", "cmd:add", "album_id:"+id];
+      return slimRequest(data);
+    };
+
+    this.add_artist = function(id) {
+      data = ["playlistcontrol", "cmd:add", "artist_id:"+id];
+      return slimRequest(data);
+    };
+
+    this.ctrl_fb = function() {
+    };
+
+    this.ctrl_play = function() {
+      data = ["play"];
+      return slimRequest(data);
+    };
+
+    this.ctrl_pause = function() {
+      data = ["pause", 1];
+      return slimRequest(data);
+    };
+
+    this.ctrl_ff = function() {
+    };
+
+
 };
 

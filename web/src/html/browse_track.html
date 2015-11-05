@@ -1,4 +1,10 @@
 <div ng-init="init()" />
 
-<p>Track: {{t.artist}}</p>
-
+<h2>Title: {{track.title}}</h2>
+<ul>
+<li>Artist: <a href="#/local/artist/{{track.artist_id}}">{{track.artist}}</a></li>
+<li>Album: <a href="#/local/album/{{track.album_id}}">{{track.album}}</a></li>
+<li>Year: {{track.year}}</li>
+<li>Track number: {{track.tracknum}}</li>
+<li>Duraction: {{track.duration}} seconds</li>
+</ul>

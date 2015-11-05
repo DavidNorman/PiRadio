@@ -33,13 +33,13 @@
 
   <body role="document">
 
-    <div>
+    <div ng-controller="TransportController">
       <a href="#/search"><span class="glyphicon glyphicon-search"></span></a>
       <a href="#/playlist"><span class="glyphicon glyphicon-list"></span></a>
-      <a href="#/"><span class="glyphicon glyphicon-fast-backward"></span></a>
-      <a href="#/"><span class="glyphicon glyphicon-play"></span></a>
-      <a href="#/"><span class="glyphicon glyphicon-pause"></span></a>
-      <a href="#/"><span class="glyphicon glyphicon-fast-forward"></span></a>
+      <a href="javascript:;" ng-click="ctrl_fb()"><span class="glyphicon glyphicon-fast-backward"></span></a>
+      <a href="javascript:;" ng-click="ctrl_play()"><span class="glyphicon glyphicon-play"></span></a>
+      <a href="javascript:;" ng-click="ctrl_pause()"><span class="glyphicon glyphicon-pause"></span></a>
+      <a href="javascript:;" ng-click="ctrl_ff()"><span class="glyphicon glyphicon-fast-forward"></span></a>
     </div>
 
     <div class="container main-body" role="main">
