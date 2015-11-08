@@ -2,12 +2,9 @@
 
 import requests
 import cherrypy
-import cherrypy_cors
 import json
 import socket
 import sys
-
-cherrypy_cors.install()
 
 squeeze_player = ""
 
@@ -20,7 +17,10 @@ def squeeze_request(params):
     js = {"id":1,"method":"slim.request","params":[squeeze_player,params]}
     return requests.post('http://192.168.0.101:9001/jsonrpc.js', data=json.dumps(js)).json()['result']
 
-class SqueezeServerService(object):
+class Root(object):
+    exposed = True
+
+class Api(object):
     exposed = True
 
     @cherrypy.tools.json_out()
@@ -28,17 +28,20 @@ class SqueezeServerService(object):
     def POST(self):
         return squeeze_request(cherrypy.request.json)
 
-    @cherrypy_cors.tools.preflight(allowed_methods=["POST"])
-    def OPTIONS(self):
-        pass
-
 if __name__ == '__main__':
-    conf = {
+    conf_api = {
         '/': {
             'request.dispatch': cherrypy.dispatch.MethodDispatcher(),
             'tools.response_headers.on': True,
             'tools.response_headers.headers': [('Content-Type', 'application/json')],
-            'cors.expose.on': True,
+        }
+    }
+
+    conf_root = {
+        '/': {
+            'tools.staticdir.on': True,
+            'tools.staticdir.dir': "/var/www",
+            'tools.staticdir.index': "index.html"
         }
     }
 
@@ -60,7 +63,11 @@ if __name__ == '__main__':
         sys.exit(0)
 
     cherrypy.server.socket_host = "0.0.0.0"
-    cherrypy.server.socket_port = 3000
+    cherrypy.server.socket_port = 80
 
-    cherrypy.quickstart(SqueezeServerService(), '/', conf)
+    cherrypy.tree.mount(Root(), '/', conf_root)
+    cherrypy.tree.mount(Api(), '/api', conf_api)
+
+    cherrypy.engine.start()
+    cherrypy.engine.block()
 

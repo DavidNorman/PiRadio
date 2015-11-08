@@ -1,0 +1,35 @@
+#!/bin/sh
+# Start/stop the squeezelite daemon.
+#
+### BEGIN INIT INFO
+# Provides:          squeezed
+# Required-Start:    $squeezelite
+# Required-Stop:     
+# Should-Start:      
+# Should-Stop:       
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Squeezebox server proxy
+# Description:       An HTTP proxy for an external squeezebox server
+### END INIT INFO
+
+PATH=/sbin
+DESC="squeezed daemon"
+NAME=squeezed
+DAEMON=/usr/local/bin/squeezed
+SCRIPTNAME=/etc/init.d/"$NAME"
+
+test -f $DAEMON || exit 0
+
+. /lib/lsb/init-functions
+
+case "$1" in
+start)	start-stop-daemon --start --quiet --background --oknodo --name $NAME --exec $DAEMON
+	;;
+stop)	start-stop-daemon --stop --quiet --oknodo --name $NAME
+        ;;
+*)	log_action_msg "Usage: /etc/init.d/squeezed {start|stop}"
+        exit 2
+        ;;
+esac
+exit 0

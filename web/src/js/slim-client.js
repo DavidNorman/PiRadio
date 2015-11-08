@@ -1,7 +1,7 @@
 function SlimClient($http, $location, serverStatus) {
 
     var slimRequest = function(data) {
-        return $http.post("http://" + $location.host() + ":3000/", data).
+        return $http.post("http://" + $location.host() + "/api", data).
             success(function(_, status) {
                 serverStatus.available = true;
             }).
