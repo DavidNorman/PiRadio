@@ -1,6 +1,10 @@
 <div ng-init="init()" />
 
-<p>Album: {{album_info.album}}</p>
+<p>
+Album: {{album_info.album}}
+<a href="javascript:;" ng-click="add_album(album_info.id)"><span class="glyphicon glyphicon-plus-sign" /></a>
+</p>
+
 <p>Artist: <a href="#/local/artist/{{album_info.artist_id}}">{{album_info.artist}}</a></p>
 
 <table class="table table-striped">
@@ -14,7 +18,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="t in tracks">
-      <th><span class="glyphicon glyphicon-plus-sign" /></th>
+      <th><a href="javascript:;" ng-click="add_track(t.id)"><span class="glyphicon glyphicon-plus-sign" /></a></th>
       <td>{{t.tracknum}}</td>
       <td><a href="#/local/track/{{t.id}}">{{t.title}}</a></td>
       <td><a href="#/local/artist/{{t.artist_id}}">{{t.artist}}</a></td>

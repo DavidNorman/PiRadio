@@ -15,7 +15,9 @@ var app = angular.module('piradio', ['ngRoute', 'ui.bootstrap'])
     $scope.serverStatus = serverStatus;
   })
   .controller('TransportController', function($scope, slimClient) {
+    $scope.ctrl_fb = slimClient.ctrl_fb;
     $scope.ctrl_play = slimClient.ctrl_play;
     $scope.ctrl_pause = slimClient.ctrl_pause;
+    $scope.ctrl_ff = slimClient.ctrl_ff;
   });
 

@@ -52,6 +52,8 @@ function SlimClient($http, $location, serverStatus) {
     };
 
     this.ctrl_fb = function() {
+      data = ["playlist", "index", "-1"];
+      return slimRequest(data);
     };
 
     this.ctrl_play = function() {
@@ -65,8 +67,13 @@ function SlimClient($http, $location, serverStatus) {
     };
 
     this.ctrl_ff = function() {
+      data = ["playlist", "index", "+1"];
+      return slimRequest(data);
     };
 
-
+    this.player_status = function() {
+      data = ["status", 0, 100, "tags:adelsty"];
+      return slimRequest(data);
+    }
 };
 
