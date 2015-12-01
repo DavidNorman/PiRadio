@@ -3,8 +3,8 @@
 #
 ### BEGIN INIT INFO
 # Provides:          squeezed
-# Required-Start:    $squeezelite
-# Required-Stop:     
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
 # Should-Start:      
 # Should-Stop:       
 # Default-Start:     2 3 4 5
@@ -24,9 +24,11 @@ test -f $DAEMON || exit 0
 . /lib/lsb/init-functions
 
 case "$1" in
-start)	start-stop-daemon --start --quiet --background --oknodo --name $NAME --exec $DAEMON
+start)	log_action_msg "Starting PiRadio daemon"
+        start-stop-daemon --start --quiet --background --oknodo --name $NAME --exec $DAEMON
 	;;
-stop)	start-stop-daemon --stop --quiet --oknodo --name $NAME
+stop)	log_action_msg "Stopping PiRadio daemon"
+        start-stop-daemon --stop --quiet --oknodo --name $NAME
         ;;
 *)	log_action_msg "Usage: /etc/init.d/squeezed {start|stop}"
         exit 2
