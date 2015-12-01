@@ -1,4 +1,11 @@
-function PlaylistController($scope, slimClient) {
+function PlaylistController($scope, $location, slimClient) {
+
+  $scope.playlist_remove = function(id) {
+    slimClient.playlist_remove(id).
+      success(function(result) {
+        location.reload();
+      });
+  };
 
   $scope.init = function() {
     slimClient.player_status().

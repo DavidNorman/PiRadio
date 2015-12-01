@@ -51,6 +51,11 @@ function SlimClient($http, $location, serverStatus) {
       return slimRequest(data);
     };
 
+    this.playlist_remove = function(track_id) {
+      data = ["playlistcontrol", "cmd:delete", "track_id:"+track_id];
+      return slimRequest(data);
+    };
+
     this.ctrl_fb = function() {
       data = ["playlist", "index", "-1"];
       return slimRequest(data);
@@ -74,6 +79,7 @@ function SlimClient($http, $location, serverStatus) {
     this.player_status = function() {
       data = ["status", 0, 100, "tags:adelsty"];
       return slimRequest(data);
-    }
+    };
+
 };
 

@@ -5,12 +5,15 @@ import cherrypy
 import json
 import socket
 import sys
+import syslog
+import time
 
 squeeze_player = ""
 
 def get_ip_address():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(('192.168.0.101', 0))  # connecting to a UDP address doesn't send packets
+    while s.connect_ex(('192.168.0.101', 0)) != 0:
+      time.sleep(1)
     return s.getsockname()[0]
 
 def squeeze_request(params):
@@ -45,13 +48,18 @@ if __name__ == '__main__':
         }
     }
 
+    syslog.syslog("squeezed: starting")
+
     # Get our IP address as seen by the squeeze server
     ip = get_ip_address()
+
+    syslog.syslog("squeezed: ip address " + ip)
 
     # Establish our player id
     r = squeeze_request(["players"])
     player_count = r["count"]
     if player_count == 0:
+        syslog.syslog("squeezed: no squeezebox players")
         sys.exit(0)
 
     r = squeeze_request(["players",0,player_count])
@@ -60,6 +68,7 @@ if __name__ == '__main__':
           squeeze_player = p["playerid"]
     
     if squeeze_player == "":
+        syslog.syslog("squeezed: no squeezebox player id")
         sys.exit(0)
 
     cherrypy.server.socket_host = "0.0.0.0"
