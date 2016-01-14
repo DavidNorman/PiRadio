@@ -24,6 +24,13 @@
       <td><a href="#/local/album/{{r.album_id}}">{{r.album}}</a></td>
       <td><a href="#/local/artist/{{r.artist_id}}">{{r.artist}}</a></td>
     </tr>
+    <tr ng-repeat="r in spotify_tracks">
+      <td><a href="javascript:;" ng-click="add_spotify_track(r.id)"><span class="glyphicon glyphicon-plus-sign" /></a></td>
+      <td>{{r.tracknum}}</td>
+      <td><a href="#/local/track/{{r.id}}">{{r.name}}</a></td>
+      <td><a href="#/local/album/{{r.album_id}}">{{r.album}}</a></td>
+      <td><a href="#/local/artist/{{r.artist_id}}">{{r.artist}}</a></td>
+    </tr>
   </tbody>
 </table>
 <table class="table table-striped">
@@ -40,6 +47,11 @@
       <td><a href="#/local/album/{{r.id}}">{{r.album}}</a></td>
       <td><a href="#/local/artist/{{r.artist_id}}">{{r.artist}}</a></td>
     </tr>
+    <tr ng-repeat="r in spotify_albums">
+      <td><a href="javascript:;" ng-click="add_spotify_album(r.id)"><span class="glyphicon glyphicon-plus-sign" /></a></td>
+      <td><a href="#/local/album/{{r.id}}">{{r.name}}</a></td>
+      <td><a href="#/local/artist/{{r.artist_id}}">{{r.artist}}</a></td>
+    </tr>
   </tbody>
 </table>
 <table class="table table-striped">
@@ -53,6 +65,10 @@
     <tr ng-repeat="r in artists">
       <td><a href="javascript:;" ng-click="add_artist(r.id)"><span class="glyphicon glyphicon-plus-sign" /></a></td>
       <td><a href="#/local/artist/{{r.id}}">{{r.artist}}</a></td>
+    </tr>
+    <tr ng-repeat="r in spotify_artists">
+      <td><a href="javascript:;" ng-click="add_spotify_artist(r.id)"><span class="glyphicon glyphicon-plus-sign" /></a></td>
+      <td><a href="#/local/artist/{{r.id}}">{{r.name}}</a></td>
     </tr>
   </tbody>
 </table>

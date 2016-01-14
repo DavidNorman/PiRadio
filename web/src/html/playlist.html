@@ -16,7 +16,7 @@
   </thead>
   <tbody>
     <tr ng-class="($index==data.playlist_cur_index)?'success':''" ng-repeat="r in data.playlist_loop">
-      <td><a href="javascript:;" ng-click="playlist_remove(r.id)"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
+      <td><a href="javascript:;" ng-click="playlist_remove($index)"><span class="glyphicon glyphicon-remove-circle"></span></a></td>
       <td>{{r.tracknum}}</td>
       <td><a href="#/local/track/{{r.id}}">{{r.title}}</a></td>
       <td><a href="#/local/album/{{r.album_id}}">{{r.album}}</a></td>

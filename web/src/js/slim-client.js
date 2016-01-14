@@ -51,8 +51,8 @@ function SlimClient($http, $location, serverStatus) {
       return slimRequest(data);
     };
 
-    this.playlist_remove = function(track_id) {
-      data = ["playlistcontrol", "cmd:delete", "track_id:"+track_id];
+    this.playlist_remove = function(track_num) {
+      data = ["playlist", "delete", track_num];
       return slimRequest(data);
     };
 
@@ -78,6 +78,31 @@ function SlimClient($http, $location, serverStatus) {
 
     this.player_status = function() {
       data = ["status", 0, 100, "tags:adelsty"];
+      return slimRequest(data);
+    };
+
+    this.spotify_search = function(search) {
+      data = ["spotify", "items", 0, 100, "item_id:8", search];
+      return slimRequest(data);
+    };
+
+    this.spotify_fetch = function(id) {
+      data = ["spotify", "items", 0, 100, "item_id:"+id];
+      return slimRequest(data);
+    };
+
+    this.add_spotify_track = function(item) {
+      data = ["spotify", "playlist", "add", "item_id:"+item];
+      return slimRequest(data);
+    };
+
+    this.add_spotify_album = function(item) {
+      data = ["spotify", "playlist", "add", "item_id:"+item];
+      return slimRequest(data);
+    };
+
+    this.add_spotify_artist = function(item) {
+      data = ["spotify", "playlist", "add", "item_id:"+item];
       return slimRequest(data);
     };
 
